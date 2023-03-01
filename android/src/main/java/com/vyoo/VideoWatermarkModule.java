@@ -11,6 +11,7 @@ import com.daasuu.mp4compose.filter.GlWatermarkFilter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import android.graphics.Bitmap;
 
 import android.net.Uri;
 import android.util.Log;
@@ -31,11 +32,11 @@ public class VideoWatermarkModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void convert(String videoPath, String imagePath, Callback callback) {
-      watermarkVideoWithImage(videoPath, imagePath, callback);
+  public void convert(String videoPath, String imagePath, float markerScale, Callback callback) {
+      watermarkVideoWithImage(videoPath, imagePath, markerScale, callback);
   }
 
-  public void watermarkVideoWithImage(String videoPath, String imagePath, final Callback callback) {
+  public void watermarkVideoWithImage(String videoPath, String imagePath, float markerScale, final Callback callback) {
     File destFile = new File(this.getReactApplicationContext().getFilesDir(), "converted.mp4");
       if (!destFile.exists()) {
           try {
@@ -47,8 +48,10 @@ public class VideoWatermarkModule extends ReactContextBaseJavaModule {
       final String destinationPath = destFile.getPath();
 
       try {
+        Bitmap bitmap = BitmapFactory.decodeStream(reactContext.getContentResolver().openInputStream(Uri.fromFile(new File(imagePath))));
+        Bitmap mark = Utils.scaleBitmap(bitmap, markerScale);
           new Mp4Composer(Uri.fromFile(new File(videoPath)), destinationPath, reactContext)
-                  .filter(new GlWatermarkFilter(BitmapFactory.decodeStream(reactContext.getContentResolver().openInputStream(Uri.fromFile(new File(imagePath))))))
+                  .filter(new GlWatermarkFilter(mark))
                   .listener(new Mp4Composer.Listener() {
                       @Override
                       public void onProgress(double progress) {

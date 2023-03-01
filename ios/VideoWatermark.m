@@ -5,12 +5,12 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(convert:(NSString *)videoUri imageUri:(nonnull NSString *)imageUri callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(convert:(NSString *)videoUri imageUri:(nonnull NSString *)imageUri markerScale:(CGFloat)markerScale callback:(RCTResponseSenderBlock)callback)
 {
-    [self watermarkVideoWithImage:videoUri imageUri:imageUri callback:callback];
+    [self watermarkVideoWithImage:videoUri imageUri:imageUri markerScale:makerScale callback:callback];
 }
 
--(void)watermarkVideoWithImage:(NSString *)videoUri imageUri:(NSString *)imageUri callback:(RCTResponseSenderBlock)callback
+-(void)watermarkVideoWithImage:(NSString *)videoUri imageUri:(NSString *)imageUri markerScale:(CGFloat)markerScale callback:(RCTResponseSenderBlock)callback
 {
     
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:videoUri] options:nil];
