@@ -2,7 +2,7 @@
 
 ## Getting started
 
-`$ npm install https://github.com/sagark1510/react-native-video-watermark#1.0.2
+`$ npm install https://github.com/Mannelpz25/react-native-video-watermark
 
 ### Mostly automatic installation
 
@@ -13,7 +13,7 @@
 ```javascript
 import VideoWatermark from 'react-native-video-watermark';
 
-VideoWatermark.convert(videoUri, imgUri, destinationUri => {
+VideoWatermark.convert(videoUri, imgUri, markerScale, destinationUri => {
     // use converted video here.
 });
 ```
