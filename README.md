@@ -2,7 +2,7 @@
 
 ## Getting started
 
-`$ npm install https://github.com/Mannelpz25/react-native-video-watermark
+`$ npm install https://github.com/ManuelLopezResser/react-native-video-watermark
 
 ### Mostly automatic installation
 
