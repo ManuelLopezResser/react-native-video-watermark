@@ -7,7 +7,7 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(convert:(NSString *)videoUri imageUri:(nonnull NSString *)imageUri markerScale:(CGFloat)markerScale callback:(RCTResponseSenderBlock)callback)
 {
-    [self watermarkVideoWithImage:videoUri imageUri:imageUri markerScale:makerScale callback:callback];
+    [self watermarkVideoWithImage:videoUri imageUri:imageUri markerScale:markerScale callback:callback];
 }
 
 -(void)watermarkVideoWithImage:(NSString *)videoUri imageUri:(NSString *)imageUri markerScale:(CGFloat)markerScale callback:(RCTResponseSenderBlock)callback
